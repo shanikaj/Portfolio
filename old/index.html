@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+
+  <!--Header-->
+  <head>
+    <meta charset = "utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>Shanika Jeyakanthan</title>
+	<link rel="stylesheet" href="main.css">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        
+<!--
+    <script>
+    function onPageLoad()
+    {
+      window.resizeTo("800", "475");
+	  document.getElementById("item").focus();
+    }
+    </script>
+-->
+  </head>
+
+  <!--Body-->
+  <body onload="javascript:onPageLoad();">
+    <!--Logo Header and Title-->
+    <div class="header">
+      <a href="#default" class="topTitle">NIMF Barcode Verification  </a>
+     
+	 <!--Inserts Teledyne DALSA logo-->
+      <div class = "forLogo">
+        <img src="logoWhite2.png" title="Everywhereyoulook™" id="logo">
+  	  </div>
+   
+     <!--Right side of header-->
+      <div class="header-right">
+	  
+        <a class="active" href="#home"> </a>
+        
+		<!--Inserts the current date and time-->
+		<a class="clockbox" href="#clockbox">
+	    <div id="clockbox"></div>
+        </a>
+		
+        <script>
+        var tday=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+        var tmonth=["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+        function GetClock()
+		{
+          var d = new Date();
+          var nday = d.getDay(),nmonth = d.getMonth(),ndate = d.getDate(),nyear = d.getFullYear();
+          var nhour = d.getHours(),nmin = d.getMinutes(),nsec = d.getSeconds(), ap;
+
+          if (nhour == 0)
+		  {
+		    ap =" AM";
+			nhour = 12;
+		  }
+          else if (nhour < 12)
+		  {
+		    ap = " AM";
+		  }
+          else if (nhour == 12)
+		  {
+		    ap = " PM";
+		  }
+          else if (nhour > 12)
+		  {
+  		    ap = " PM";
+			nhour -= 12;
+		  }
+
+          if (nmin <= 9) 
+		  {
+		    nmin = "0" + nmin;
+		  }
+		 
+          if (nsec <= 9)
+		  {
+		    nsec = "0" + nsec;
+		  }
+		 
+          var clocktext = "" + tday[nday] + ", " + tmonth[nmonth] + " " + ndate + ", " + nyear + " " + nhour + ":" + nmin + ":" + nsec + ap + "";
+          document.getElementById('clockbox').innerHTML = clocktext;
+        }
+
+        GetClock();
+        setInterval(GetClock,1000);
+        </script>				
+				
+      </div>
+    </div>
+
+	<p></p>
+	<p></p>
+	
+	<script>
+	function moveToNext(current, nextBox)
+	{
+	  if (current.value.length >= current.maxLength)
+	  {
+	    document.getElementById(nextBox).focus();
+	  }
+	}
+	</script>
+	
+	<script>
+	function checkFilled(current)
+	{
+	  if (current.value.length >= current.maxLength)
+	  {
+	    document.getElementById("click").focus();
+	  }
+	}
+	</script>
+	
+    <!--Text boxes used for input of item and bag scanned barcodes-->
+    <div id="inputs">
+      <input id="item" value="" maxlength="50" onkeyup="moveToNext(this, 'bag')">
+      <input id="bag" value="" maxlength="50" onkeyUp="checkFilled(this)">
+    </div>
+	
+	<!--When compare button is clicked, comparison function is called-->
+    <button onclick="comparison()" id="click" onkeyup="comparison()">Compare</button>
+	
+	<!--Clear button-->
+    <button onclick="clearText()" id="clear">Clear</button>
+
+	<!--Clears all values on the page-->
+    <script>
+	function clearText()
+	{
+	  var success = document.getElementById("same");
+	  var fail = document.getElementById("diff");
+	  var blank = document.getElementById("nothing");
+
+	  document.getElementById("nothing").innerHTML = " ";
+	  document.getElementById("same").value = "";
+	  document.getElementById("diff").value = "";
+	  document.getElementById("item").value = "";
+	  document.getElementById("bag").value = "";
+	  
+	  blank.style.display = 'block';
+	  fail.style.display = 'none';
+	  success.style.display = 'none';
+	  
+	  document.getElementById("item").focus();
+	}
+	</script>
+		
+	<!--Sets display message accordingly depending on if barcodes match-->
+    <script>
+	function comparison()
+	{
+	  var item = document.getElementById('item').value;
+	  item = parseFloat(item);
+	  
+	  var bag = document.getElementById('bag').value;
+	  bag = parseFloat(bag);
+	  
+	  var success = document.getElementById('same');
+	  var fail = document.getElementById('diff');
+	  
+	  if (item == bag)
+	  {
+		  success.style.display = 'block';
+		  fail.style.display = 'none';
+		  document.getElementById("same").innerHTML = "Barcodes match! :)";
+		  setTimeout(clearText, 2500);
+	  }
+	  else
+	  {
+	      fail.style.display = 'block';
+		  success.style.display = 'none';
+		  document.getElementById("diff").innerHTML = "Barcodes do not match :(";
+	  }	  
+	}
+	</script>
+	
+	<h3> </h3>
+	<!--Displays success/fail/blank message accordingly-->
+	<div class="alert success" id="same">
+      <strong></strong>
+    </div>
+
+    <div class="alert fail" id="diff">
+      <strong></strong>
+    </div>	
+	
+	<div class="alert blank" id="nothing">
+	  <strong></strong>
+	</div>
+
+  </body>
+</html>
