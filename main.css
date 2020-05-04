@@ -6,11 +6,64 @@ body, input, button
 	background-color: #FFFFFF;
 }
 
+
+.bolding .nav-link.active {
+    color: #FFFFFF!important;
+}
 /*
+.badge-primary{
+    background-color: #0E4B77!important;
+}
+
+*/
+.badge-secondary{
+    background-color: #686058!important;
+}
+/*
+.badge-success{
+    background-color: #686058!important;
+}
+*/
+.badge-danger{
+    background-color: #FA8072!important;
+}
+ 
+.badge-warning{
+    color: white!important;
+    background-color: #0E4B77!important;
+}
+/*
+.badge-info{
+    background-color: #0E4B77!important;
+}
+
+
+/*
+.nav-pills .nav-link.active {
+    background-color: #1169C8!important;
+}
+
+
 *
 {
 	box-sizing: border-box;
-}*/
+}
+
+
+
+
+
+.red .active a,
+.red .active a:hover {
+    background-color:  #686058;
+}
+
+
+.nav-pills > .active > a, .nav-pills > .active > a:hover
+{
+    background-color: #686058;
+}
+ */
 
 .feather {
     width: 16px;
